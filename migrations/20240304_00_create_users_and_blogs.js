@@ -24,15 +24,15 @@ module.exports = {
                 type: DataTypes.INTEGER,
                 defaultValue: 0
             },
-            createdAt: {
+            created_at: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: DataTypes.NOW,
+                //defaultValue: DataTypes.NOW,
             },
-            updatedAt: {
+            updated_at: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: DataTypes.NOW,
+                //defaultValue: DataTypes.NOW, //No funca por alguna razon
             },
         })
         await queryInterface.createTable('users', {
@@ -44,13 +44,7 @@ module.exports = {
             username: {
                 type: DataTypes.STRING,
                 unique: true,
-                allowNull: false,
-                validate: {
-                    isEmail: {
-                        args: true,
-                        msg: 'Validation isEmail on username failed',
-                    },
-                }
+                allowNull: false
             },
             name: {
                 type: DataTypes.STRING,
@@ -59,12 +53,12 @@ module.exports = {
             created_at: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: DataTypes.NOW,
+                //defaultValue: DataTypes.NOW,
             },
             updated_at: {
                 type: DataTypes.DATE,
                 allowNull: false,
-                defaultValue: DataTypes.NOW,
+                //defaultValue: DataTypes.NOW,
             },
         })
         await queryInterface.addColumn('blogs', 'user_id', {

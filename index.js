@@ -8,6 +8,7 @@ const routerBlog = require("./controllers/blogs")
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const authorRouter = require('./controllers/author')
+const readinglistsRouter = require('./controllers/readinglists')
 
 const app = express()
 
@@ -15,8 +16,9 @@ app.use(express.json())
 
 app.use('/api/blogs', routerBlog)
 app.use('/api/users', usersRouter)
-app.use('/api/login', loginRouter)
 app.use('/api/authors', authorRouter)
+app.use('/api/readinglists', readinglistsRouter)
+app.use('/api', loginRouter)
 
 const unknownEndpoint = (request, response) => {
     response.status(404).send({ error: "unknown endpoint" });

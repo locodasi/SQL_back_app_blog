@@ -23,7 +23,11 @@ Blog.init({
         },
         likes: {
             type: DataTypes.INTEGER,
-            defaultValue: 0
+            defaultValue: 0,
+            validate: {
+                isInt: true,
+                min: 0
+            }
         },
         yearWrited: {
             type: DataTypes.INTEGER,
@@ -31,14 +35,17 @@ Blog.init({
             validate: {
                 isInt: true,
                 min: 1991,
-                max: new Date().getFullYear(), // Obtener el año actual dinámicamente
-                msg: "Year Writed must be beetwen 1991 and the current year"
+                greaterThanCurrent(value) {
+                    const current = new Date().getFullYear()
+                    if (parseInt(value) > current) {
+                    throw new Error(`year can not be greater than ${current}`);
+                    }
+                }
             },
         }
     }, {
     sequelize,
     underscored: true,
-    timestamps: false,
     modelName: 'blog'
 })
 
